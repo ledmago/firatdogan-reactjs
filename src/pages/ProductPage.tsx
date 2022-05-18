@@ -1,4 +1,4 @@
-export default function ProductPage() {
+export default function ProductPagePage() {
     return (
         <div className="flex-1 items-center mt-10 mx-4 mb-5">
 
