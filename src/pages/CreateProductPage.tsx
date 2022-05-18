@@ -1,11 +1,10 @@
+import NavBar from '../components/NavBar';
+
 export default function CreateProductPage() {
     return (
         <div className="flex-1 items-center mt-10 mx-4 mb-5">
 
-            <div className="flex flex-1 mb-10 shadow-lg items-center container mx-auto px-4 py-4 text-xl font-sans italic font-medium bg-white rounded-md  justify-between">
-                <div>UPayments Store</div>
-                <div>Register</div>
-            </div>
+            <NavBar />
             <div className="mt-20 mx-auto sm:w-11/12 w-11/12 lg:w-5/12 xl:w-5/12 self-center py-2 justify-center items-center  ">
                 <div className='text-3xl font-semibold text-center'>Create Product</div>
 
