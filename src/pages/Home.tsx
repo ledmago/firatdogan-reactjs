@@ -2,30 +2,10 @@ import { Link } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
-interface IProductType {
-    // Name: String;
-    // Price: Number
-    // Category: String
-    // Description: String
-    // Avatar: String
-    // DeveloperEmail: String,
+import { ICategoryType, IProductType } from '../types'
+import config from "../config.json"
 
-    avatar: string;
-    category: string;
-    createdAt: Date;
-    description: string;
-    developerEmail: string;
-    id: string;
-    name: string;
-    price: number;
-}
-interface ICategoryType {
-    createdAt: Date;
-    id: string;
-    name: string;
-}
 export default function Home() {
-    const DEFAULT_IMAGE = "https://uploads-ssl.webflow.com/5b51027ab42492b481d39425/5ba289e09f24ea6d65fc8a70_noimage.jpg"
     const [productList, setProductList] = useState<IProductType[]>([]);
     const [categories, setCategories] = useState<ICategoryType[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -36,12 +16,12 @@ export default function Home() {
     }, [])
 
     const fetchProductsAndCategories = useCallback(async () => {
-        axios.get("https://62286b649fd6174ca82321f1.mockapi.io/case-study/categories").then(({ data }) => {
+        axios.get(config.apiUrl + "/case-study/categories").then(({ data }) => {
             if (data) {
                 setCategories(data)
             }
         })
-        axios.get("https://62286b649fd6174ca82321f1.mockapi.io/case-study/products/").then(({ data }) => {
+        axios.get(config.apiUrl + "/case-study/products/").then(({ data }) => {
             if (data) {
                 setProductList(data)
             }
@@ -70,7 +50,7 @@ export default function Home() {
                         <Link to={`product/${product.id}`}>
                             <div className="flex-col min-h-fit align-center items-center flex justify-center mb-6">
                                 <div className="bg-white shadow rounded-2xl  py-2 px-2 " >
-                                    <img className=" h-64 w-52 object-contain" src={product.avatar} onError={(e) => e.currentTarget.src = DEFAULT_IMAGE}></img>
+                                    <img className=" h-64 w-52 object-contain" src={product.avatar} onError={(e) => e.currentTarget.src = config.defaultImageUrl}></img>
 
                                 </div>
                                 <div className="m-2 font-medium h-12 w-52 overflow-hidden">{product.name}</div>
